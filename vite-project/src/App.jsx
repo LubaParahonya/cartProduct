@@ -12,6 +12,9 @@ function App() {
     quantity: card.reduce((sum, cur) => {return sum + cur.count}, 0),
     price: card.reduce((sum, cur) => {return sum + cur.price}, 0)
   })
+  const [category, setCategory] = useState([])
+  const [currentProduct, setCurrentProduct] = useState([])
+  
 
 const getApi = async () => {
   try{
@@ -24,7 +27,8 @@ const getApi = async () => {
     })
 }
   setProducts(mapDefaultList(response))
-
+  setCategory([...new Set(response.map(el => el.catecories)), "Все"])
+  setCurrentProduct(mapDefaultList(response))
   }catch(error){
         console.log(error);
       }
@@ -90,10 +94,23 @@ const decrease = (id) => {
 
 }
 
+const filterProduct = (category) =>{
+  if(category === "Все"){
+    setCurrentProduct(products)
+  }else{
+    setCurrentProduct(products.filter(el => el.catecories === category))
+  } 
+}
+
   return (
     <div className='mainBox'>
     <div className='main'>
-    {products.map(el => {
+      <div className='category'>{category.map(el => (
+        <div className='elementCategory' onClick={()=> filterProduct(el)}>
+          {el}
+        </div>
+      ))}</div>
+    {currentProduct? currentProduct.map(el => {
       const {url, title, price, count, id} = el
       return ( 
       <Product 
@@ -106,7 +123,7 @@ const decrease = (id) => {
         id={id}
         />
       )
-    })}
+    }): null}
     </div>
     <div className='card'>
       <div className='nameCard'>Корзина товара</div>

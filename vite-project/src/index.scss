@@ -1,7 +1,11 @@
+html, body, #root{
+height: 100%;
+}
 .mainBox{
     display: flex;
     background-color: rgb(99, 196, 238);
     overflow: hidden;
+    height: 100%;
     .main{
         display: flex;
         flex-wrap: wrap;
@@ -11,6 +15,30 @@
         padding-top: 5%;
         width: 60%;
         gap: 6%;
+        .category{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3%;
+            justify-content: center;
+            max-height: 90px;
+            .elementCategory{
+                box-shadow: 0px 5px 10px 0px rgba(10, 10, 10, 0.5); 
+                border-radius: 5%;
+                padding: 2%;
+                margin-bottom: 2%;
+                background-color: rgb(251, 0, 255);
+                max-height: 6%;
+                align-items: center;
+                display: flex;
+                transition: all ease 500ms;
+                gap: 3%;
+                &:hover{
+                    cursor: pointer;
+                    box-shadow: 5px 10px 15px 5px rgba(210, 26, 124, 0.5);
+                    transform: scale(1.03);
+                }
+            }
+        }
     }
     .card{
         display: flex;

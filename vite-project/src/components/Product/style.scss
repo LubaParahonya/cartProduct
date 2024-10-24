@@ -14,9 +14,9 @@
     background-color: rgb(195, 227, 227);
     gap: 3%;
     &:hover{
-        transform: scale(1.03);
         cursor: pointer;
         box-shadow: 5px 10px 15px 5px rgba(210, 26, 124, 0.5);
+        transform: scale(1.03);
     }
     .boximage{
         max-width: 100%;
